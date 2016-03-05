@@ -88,6 +88,29 @@ gulp.task('NAME_OF_TASK', function() {
    .pipe(gulp.dest('PATH_TO_DESTINATION');
 });
 ```
+#### List of tasks available
+
+Task Name | Description
+:--- | :---
+default | combination of any number of the tasks defined below
+greet | Hello world!
+sass | compile sass/scss, generate css sourcemaps and minifies css
+scsslint | sass/scss linting via lint.yml
+jsmin | generate js sourcemaps and minify js
+jslint | lint js using http://google.github.io/styleguide/javascriptguide.xml
+images | image smushing and optimisation
+serve | browser sync
+serve:dist | browser sync from the distribution build
+clean | cleans the distribution build
+copy | copies files to the distribution folder
+concat | used for concatenating all relevant files defined within
+pagespeed | runs pageSpeed insights
+gsw | generates a service worker file that will provide offline functionality for local resources
+copy-sw-scripts | copies over the scripts that are used in importScripts as part of the generate-service-worker task
+watchers | re-runs the relavant task on file change
+lint | standalone linting for js and sass/scss
+build | standalone build deployment
+sync | standalone browser sync
 
 ***
 

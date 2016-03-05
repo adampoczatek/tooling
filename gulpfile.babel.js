@@ -63,6 +63,19 @@ var ignore = function() {
   this.emit('end');
 };
 
+// Build production files, the default task
+gulp.task('default', ['greet'], cb =>
+  runSequence(
+    ['clean', 'scsslint', 'sass', 'jslint', 'jsmin', 'images'],
+    //'pagespeed',
+    'copy',
+    'gsw',
+    'watchers',
+    //'sync',
+    cb
+  )
+);
+
 // Greet
 gulp.task('greet', () =>
   $$.util.log($$.util.colors.green('Hello, tasks are initialising for ' + pkg.name))
@@ -117,6 +130,27 @@ gulp.task('scsslint', () => {
     }))
 });
 
+// Minify js
+gulp.task('jsmin', () => {
+  const includeFiles = config.jsPath + '**/*.js';
+  const excludeFiles = '!' + config.jsPath + '**/*.min.js';
+  gulp.src([includeFiles, excludeFiles])
+    .pipe($$.plumber({
+      errorHandler: onError
+    }))
+    .pipe($$.cached('jsmin'))
+    .pipe($$.filter('**/*.js'))
+    .pipe($$.newer(includeFiles))
+    .pipe($$.if(pkg.debug, $$.sourcemaps.init({ identityMap: pkg.debug })))
+    .pipe($$.babel())
+    .pipe($$.uglify({ preserveComments: 'some' }))
+    .pipe($$.rename({ suffix: '.min' }))
+    .pipe($$.if(pkg.debug, $$.sourcemaps.write('.')))
+    .pipe($$.if(pkg.production, $$.size({ title: 'scripts' })))
+    .pipe(gulp.dest(config.jsPath))
+    .pipe(gulp.dest('dist/scripts'))
+});
+
 // Js Lint - extends http://google.github.io/styleguide/javascriptguide.xml
 gulp.task('jslint', () => {
   const includeFiles = config.jsPath + '**/*.js';
@@ -139,27 +173,6 @@ gulp.task('jslint', () => {
     .pipe($$.if(!browserSync.active && !pkg.enableSync, $$.eslint.failOnError()))
 });
 
-// Minify js
-gulp.task('jsmin', () => {
-  const includeFiles = config.jsPath + '**/*.js';
-  const excludeFiles = '!' + config.jsPath + '**/*.min.js';
-  gulp.src([includeFiles, excludeFiles])
-    .pipe($$.plumber({
-      errorHandler: onError
-    }))
-    .pipe($$.cached('jsmin'))
-    .pipe($$.filter('**/*.js'))
-    .pipe($$.newer(includeFiles))
-    .pipe($$.if(pkg.debug, $$.sourcemaps.init({ identityMap: pkg.debug })))
-    .pipe($$.babel())
-    .pipe($$.uglify({ preserveComments: 'some' }))
-    .pipe($$.rename({ suffix: '.min' }))
-    .pipe($$.if(pkg.debug, $$.sourcemaps.write('.')))
-    .pipe($$.if(pkg.production, $$.size({ title: 'scripts' })))
-    .pipe(gulp.dest(config.jsPath))
-    .pipe(gulp.dest('dist/scripts'))
-});
-
 // Image optimisation
 gulp.task('images', () =>
   gulp.src(config.imagePath + '**/*.{gif,jpg,png,svg}')
@@ -169,7 +182,6 @@ gulp.task('images', () =>
   .pipe($$.cached('img'))
   .pipe($$.newer(config.imagePath + '**/*.{gif,jpg,png,svg}'))
   .pipe($$.filter('**/*.{gif,jpg,png,svg}'))
-  //.pipe($$.newer(config.imagePath))
   .pipe($$.imagemin({
     progressive: true,
     svgoPlugins: [{ removeViewBox: false }],
@@ -202,11 +214,6 @@ gulp.task('serve', ['sass', 'jsmin'], () => {
   gulp.watch([config.imagePath + '**/*.{gif,jpg,png,svg}'], reload);
 });
 
-// Hadrcore cleaning
-gulp.task('clean', () =>
-  del(['.tmp', 'dist/**/*', '!dist/.git'])
-);
-
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], () =>
   browserSync({
@@ -221,6 +228,11 @@ gulp.task('serve:dist', ['default'], () =>
     server: config.appPath,
     port: 3001
   })
+);
+
+// Hadrcore cleaning
+gulp.task('clean', () =>
+  del(['.tmp', 'dist/**/*', '!dist/.git'])
 );
 
 // Copy all files at the root level (app)
@@ -244,7 +256,7 @@ gulp.task('copy', () =>
 // <!-- build:<type> <path> -->
 // ... HTML Markup, list of script / link tags.
 // <!-- endbuild -->
-gulp.task('build', function() {
+gulp.task('concat', function() {
   return gulp.src(config.appPath + '*.{js,css}*')
     .pipe($$.plumber({
       errorHandler: onError
@@ -268,17 +280,7 @@ gulp.task('pagespeed', cb =>
   }, cb)
 );
 
-// Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
-gulp.task('copy-sw-scripts', () => {
-  return gulp.src(['./node_modules/sw-toolbox/sw-toolbox.js', 'runtime-caching.js'])
-    .pipe($$.plumber({
-      errorHandler: onError
-    }))
-    .pipe(gulp.dest(config.distributionFolder + '/scripts'));
-});
-
-// Generate a service worker file that will provide offline functionality for
-// local resources. This should only be done for the 'dist' directory, to allow
+// This should only be done for the 'dist' directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
 gulp.task('gsw', ['copy-sw-scripts'], () => {
   const rootDir = config.appPath;
@@ -304,19 +306,15 @@ gulp.task('gsw', ['copy-sw-scripts'], () => {
   })
 });
 
+// Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
+gulp.task('copy-sw-scripts', () => {
+  return gulp.src(['./node_modules/sw-toolbox/sw-toolbox.js', 'runtime-caching.js'])
+    .pipe($$.plumber({
+      errorHandler: onError
+    }))
+    .pipe(gulp.dest(config.distributionFolder + '/scripts'));
+});
 
-// Build production files, the default task
-gulp.task('default', ['greet'], cb =>
-  runSequence(
-    ['clean', 'scsslint', 'sass', 'jslint', 'jsmin', 'images'],
-    //'pagespeed',
-    'copy',
-    'gsw',
-    'watchers',
-    //'sync',
-    cb
-  )
-);
 gulp.task('watchers', () => {
   gulp.watch(config.sassPath + '**/*.s+(a|c)ss', ['scsslint', 'sass', 'gsw']);
   gulp.watch(config.jsPath + '**/*.js', ['jslint', 'jsmin', 'gsw']);
