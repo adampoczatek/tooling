@@ -1,0 +1,116 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Magento Specific
+/.buildpath
+/.cache
+/.metadata
+/.project
+/.settings
+atlassian*
+/nbproject
+/sitemap
+/.idea
+/.gitattributes
+
+/app/code/Magento
+/app/design/*/Magento
+/app/etc
+/app/i18n/magento
+/app/*.*
+
+/bin
+
+/dev/shell
+
+/dev/tests/*/framework
+/dev/tests/*/testsuite/Magento
+/dev/tests/*/tmp
+/dev/tests/*/etc
+/dev/tests/*/*.*
+/dev/tests/*.*
+/dev/tests/api-functional/config
+/dev/tests/api-functional/_files/Magento
+/dev/tests/js/JsTestDriver/framework
+/dev/tests/js/JsTestDriver/testsuite/lib
+/dev/tests/js/JsTestDriver/testsuite/mage
+/dev/tests/js/JsTestDriver/*.*
+/dev/tests/js/jasmine/assets
+/dev/tests/js/jasmine/spec_runner
+/dev/tests/js/jasmine/tests/app/code/Magento
+/dev/tests/js/jasmine/tests/lib/mage
+/dev/tests/js/jasmine/*.*
+/dev/tests/performance
+/dev/tests/functional/lib/Magento
+/dev/tests/functional/tests/app/Magento
+/dev/tests/functional/testsuites/Magento
+/dev/tests/functional/utils
+
+/dev/tools/Magento
+/dev/tools/grunt
+/dev/tools/*.*
+
+/dev/*.*
+
+/lib
+
+/node_modules
+
+/pub
+
+/setup
+
+/var
+
+/vendor
+
+/*.*
+
+!/composer.json
+!/composer.lock
+!/README.md
