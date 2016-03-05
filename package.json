@@ -1,6 +1,6 @@
 {
   "name": "gulp-fed-tooling",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "FED Runner",
   "main": "gulpfile.js",
   "author": "Faizal Sahebdin",
