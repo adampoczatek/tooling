@@ -1,0 +1,17 @@
+@import 'globals/variables';
+body {
+  div {
+    padding: 100px;
+    margin: 000;
+    display: flex;
+  }
+  aside {
+    border: 1px solid $blue;
+    .example {
+      display: flex;
+      transition: all .5s;
+      user-select: none;
+      background: linear-gradient(to bottom, $blue, $black)
+    }
+  }
+}

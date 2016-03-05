@@ -100,6 +100,7 @@ media/catalog/product/cache/
 media/catalog/product/placeholder/default/
 /api.php
 nbproject/
+node_modules/
 pear
 pear/
 php.ini.sample

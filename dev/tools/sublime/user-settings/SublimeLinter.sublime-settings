@@ -1,0 +1,133 @@
+{
+    "user": {
+        "debug": false,
+        "delay": 0.25,
+        "error_color": "D02000",
+        "gutter_theme": "Packages/SublimeLinter/gutter-themes/Danish Royalty/Danish Royalty.gutter-theme",
+        "gutter_theme_excludes": [],
+        "lint_mode": "background",
+        "linters": {
+            "csslint": {
+                "@disable": false,
+                "args": [],
+                "errors": "",
+                "excludes": [],
+                "ignore": [
+                    "ids",
+                    "box-sizing",
+                    "ie7"
+                ],
+                "warnings": ""
+            },
+            "jshint": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            },
+            "jshint_options": {
+                "adsafe": false,
+                "asi": false,
+                "bitwise": false,
+                "boss": false,
+                "browser": true,
+                "cap": false,
+                "couch": true,
+                "css": false,
+                "curly": true,
+                "debug": false,
+                "devel": false,
+                "eqeqeq": true,
+                "es5": false,
+                "evil": false,
+                "forin": false,
+                "fragment": false,
+                "immed": true,
+                "indent": 4,
+                "laxbreak": false,
+                "loopfunc": true,
+                "maxerr": 100,
+                "maxlen": 160,
+                "newcap": true,
+                "noarg": true,
+                "node": true,
+                "noempty": true,
+                "nomen": false,
+                "nonew": true,
+                "on": false,
+                "onevar": true,
+                "passfail": false,
+                "plusplus": false,
+                "predef": [
+                    "$",
+                    "jQuery",
+                    "console",
+                    "Class",
+                    "Modernizr",
+                    "History",
+                    "RED",
+                    "red",
+                    "FB",
+                    "Scroller"
+                ],
+                "regexp": false,
+                "rhino": false,
+                "safe": false,
+                "strict": false,
+                "sub": false,
+                "undef": true,
+                "white": true,
+                "widget": false,
+                "windows": false
+            },
+            "jsl": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            },
+            "sass": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            },
+            "summitlinter": {
+                "@disable": false,
+                "args": [],
+                "excludes": [],
+                "globals": "",
+                "ignore": "channel",
+                "limit": null,
+                "only": ""
+            }
+        },
+        "mark_style": "stippled underline",
+        "no_column_highlights_line": false,
+        "passive_warnings": false,
+        "paths": {
+            "linux": [],
+            "osx": [],
+            "windows": [
+                "C:/Program Files/nodejs"
+            ]
+        },
+        "python_paths": {
+            "linux": [],
+            "osx": [],
+            "windows": []
+        },
+        "rc_search_limit": 3,
+        "shell_timeout": 10,
+        "show_errors_on_save": false,
+        "show_marks_in_minimap": true,
+        "syntax_map": {
+            "html (django)": "html",
+            "html (rails)": "html",
+            "html 5": "html",
+            "jsp": "html",
+            "jspf": "html",
+            "php": "html",
+            "python django": "python"
+        },
+        "warning_color": "cccccc",
+        "wrap_find": true
+    }
+}
