@@ -7,7 +7,7 @@ A quick startup guide for setting up your environment from a front-end perspecti
 > Platform agnostic. Tested on Linux and Windows.
 
 ### Version
-1.0.4
+1.0.7
 
 > This is a _working document_. Last edited by [Faizal Sahebdin] on 04 March 2016 
 

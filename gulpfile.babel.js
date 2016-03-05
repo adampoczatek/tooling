@@ -1,7 +1,7 @@
 /**
  *
  *  Front-end Tooling
- *  Version 1.0.6
+ *  Version 1.0.7
  *  Author: Faizal Sahebdin
  *  Copyright 2016 Salmon. All rights reserved.
  *

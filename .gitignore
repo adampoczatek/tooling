@@ -31,6 +31,13 @@ $RECYCLE.BIN/
 # Thumbnails
 ._*
 
+# Generated files
+*.css
+*.css.map
+*.min.*
+service-worker.js
+/dist
+
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
