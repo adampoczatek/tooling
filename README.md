@@ -9,7 +9,7 @@ A quick startup guide for setting up your environment from a front-end perspecti
 ### Version
 1.0.12
 
-> This is a _working document_. Last edited by [Faizal Sahebdin] on 04 March 2016 
+> This is a _working document_. Last edited by [Faizal Sahebdin] on 05 March 2016 
 
 * auto-gen TOC:
 {:toc}
