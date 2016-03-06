@@ -7,7 +7,7 @@ A quick startup guide for setting up your environment from a front-end perspecti
 > Platform agnostic. Tested on Linux and Windows.
 
 ### Version
-1.0.7
+1.0.12
 
 > This is a _working document_. Last edited by [Faizal Sahebdin] on 04 March 2016 
 
@@ -39,7 +39,7 @@ If you're using Sublime then you may switch off some of the tasks in the Gulp fi
 * [Package Control] - package manager that finds, install and keep packages up-to-date
 * [Gulp] - run your Gulp tasks from within Sublime
 * [HTML-CSS-JS Prettify] - code formatter via node.js
-* [Markdown Preview]
+* [Markdown Preview] - previews markdown
 * [Sass] - syntax highlighting and tab/code completion for sass and scss files
 * [SublimeGit] - optional, if you're using git for version control
 * [SublimeGitGutter] - optional, if you're using git and to see diff in gutter
@@ -74,7 +74,7 @@ $ npm install gulp --g
 ```cmd
 $ cd [your_project_root]
 $ npm install gulp --save-dev
-$ npm install --save-dev babel-core babel-preset-es2015 browser-sync del eslint eslint-config-google gulp-autoprefixer gulp-babel gulp-beautify gulp-cached gulp-concat gulp-cssnano gulp-filter gulp-eslint gulp-htmlmin gulp-if gulp-imagemin gulp-load-plugins gulp-newer gulp-notify gulp-plumber gulp-progeny gulp-rename run-sequence gulp-sass gulp-scss-lint gulp-size gulp-sourcemaps gulp-uglify gulp-useref gulp-uncss gulp-util pagespeed psi sw-precache sw-toolbox
+$ npm install --save-dev babel-core babel-preset-es2015 browser-sync del eslint eslint-config-google gulp-autoprefixer gulp-babel gulp-beautify gulp-cached gulp-concat gulp-cssnano gulp-filter gulp-eslint gulp-htmlmin gulp-if gulp-imagemin gulp-jasmine gulp-load-plugins gulp-newer gulp-notify gulp-plumber gulp-progeny gulp-rename run-sequence gulp-sass gulp-scss-lint gulp-size gulp-sourcemaps gulp-uglify gulp-useref gulp-uncss gulp-util pagespeed psi sw-precache sw-toolbox
 ```
 
 * Note: There a bug on Windows 10 which complains about a missing C++ compiler, I got around this by googling and installing the SDK
@@ -99,6 +99,7 @@ scsslint | sass/scss linting via lint.yml
 jsmin | generate js sourcemaps and minify js
 jslint | lint js using http://google.github.io/styleguide/javascriptguide.xml
 images | image smushing and optimisation
+jasmine | test runner
 serve | browser sync
 serve:dist | browser sync from the distribution build
 clean | cleans the distribution build
