@@ -80,6 +80,11 @@ $ npm install --save-dev babel-core babel-preset-es2015 browser-sync del eslint 
 * Note: There a bug on Windows 10 which complains about a missing C++ compiler, I got around this by googling and installing the SDK
 * Remove browser-sync and/or gulp-imagemin if you're not using them. And exclude ./install/here/node_modules directory from your repo
 
+optional, magento specific grunt runner
+```
+$ npm install --save dev glob grunt grunt-autoprefixer grunt-banner grunt-contrib-clean grunt-contrib-connect grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jasmine grunt-contrib-less grunt-contrib-watch grunt-eslint grunt-exec grunt-jscs grunt-replace grunt-styledocco grunt-template-jasmine-requirejs grunt-text-replace imagemin-svgo load-grunt-config morgan path serve-static strip-json-comments underscore
+```
+
 #### Create a gulp task stream using this format:
 ```javascript
 gulp.task('NAME_OF_TASK', function() {
