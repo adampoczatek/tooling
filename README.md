@@ -11,9 +11,6 @@ A quick startup guide for setting up your environment from a front-end perspecti
 
 > This is a _working document_. Last edited by [Faizal Sahebdin] on 04 March 2016 
 
-* auto-gen TOC:
-{:toc}
-
 ## Tech
 The toolset uses a number of open source projects to work properly while utilising your editor of choice. For this configuration I shall be using [Sublime Text] as my editor but [Vim], [Visual Studio] and [Atom] have all got their equivalent plugins and settings
 
@@ -70,7 +67,12 @@ $ npm uninstall gulp --save-dev
 $ npm install gulp --g
 ```
 
-#### install Gulp and plugins into your project
+#### automated install Gulp and plugins into your project
+```cmd
+$ cd [your_project_root]
+$ npm update
+```
+#### manual install Gulp and plugins into your project
 ```cmd
 $ cd [your_project_root]
 $ npm install gulp --save-dev
