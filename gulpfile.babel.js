@@ -36,7 +36,7 @@ import swPrecache from 'sw-precache';
 import { output as pagespeed } from 'psi';
 import pkg from './package.json';
 
-// Configuration Variables
+// configuration Variables
 const defaultConfig = {
   appPath: './app/',
   sassPath: './app/css/',
@@ -63,7 +63,7 @@ const magentoConfig = {
   sassStyle: 'compressed', //compressed, expanded, nested
   prefixBrowsers: ['last 3 versions', 'ie >= 8', 'ie_mob >= 10', 'ff >= 21', 'chrome >= 28', 'safari >= 6', 'opera >= 11', 'ios >= 7', 'android >= 4.4', 'bb >= 10', '> 1%']
 };
-const config = pkg.magento ? magentoConfig : defaultConfig
+const config = pkg.magento ? magentoConfig : pkg.websphere ? ibmConfig : defaultConfig
 const $$ = gulpLoadPlugins();
 const reload = browserSync.reload;
 const scssIncludeFiles = path.join(config.sassPath, '**/*.s+(a|c)ss');
@@ -99,11 +99,12 @@ gulp.task('default', ['greet'], cb =>
   )
 );
 
-// Greet
+// greet
 gulp.task('greet', () =>
   $$.util.log($$.util.colors.green('Hello, tasks are initialising for ' + pkg.name))
 );
 
+// compile sass
 gulp.task('sass', () =>
   gulp.src(scssIncludeFiles)
   .pipe($$.plumber({
@@ -133,7 +134,7 @@ gulp.task('sass', () =>
   .pipe(gulp.dest((file) => file.base))
 );
 
-// Sass Lint
+// lint sass
 gulp.task('scsslint', () =>
   gulp.src(scssIncludeFiles)
   .pipe($$.plumber({
@@ -151,7 +152,7 @@ gulp.task('scsslint', () =>
   }))
 );
 
-// Minify js
+// minify js
 gulp.task('jsmin', () =>
   gulp.src([jsIncludeFiles, '!' + jsExcludeFiles])
   //.pipe($$.util.log(jsExcludeFiles))
@@ -170,7 +171,7 @@ gulp.task('jsmin', () =>
   .pipe(gulp.dest((file) => file.base))
 );
 
-// Js Lint - extends http://google.github.io/styleguide/javascriptguide.xml
+// lint js - extending http://google.github.io/styleguide/javascriptguide.xml
 gulp.task('jslint', () =>
   gulp.src([jsIncludeFiles, '!' + jsExcludeFiles])
   .pipe($$.plumber({
@@ -193,7 +194,7 @@ gulp.task('jslint', () =>
   .pipe($$.if(!browserSync.active && !pkg.enableSync, $$.eslint.failOnError()))
 );
 
-// Image optimisation
+// image optimisation
 gulp.task('images', () =>
   gulp.src(imgIncludeFiles)
   .pipe($$.plumber({
@@ -212,13 +213,13 @@ gulp.task('images', () =>
   .pipe(gulp.dest((file) => file.base))
 );
 
-// tests
+// unit tests
 gulp.task('jasmine', () =>
   gulp.src(testPath)
   .pipe($$.jasmine())
 );
 
-// Watch files for changes & reload
+// browserSync for changes & reload
 gulp.task('serve', ['sass', 'jsmin'], () => {
   browserSync({
     notify: false,
@@ -240,7 +241,7 @@ gulp.task('serve', ['sass', 'jsmin'], () => {
   gulp.watch(imgIncludeFiles, reload);
 });
 
-// Build and serve the output from the dist build
+// browserSync and serve the output from the dist build
 gulp.task('serve:dist', ['default'], () =>
   browserSync({
     notify: false,
@@ -256,12 +257,12 @@ gulp.task('serve:dist', ['default'], () =>
   })
 );
 
-// Hadrcore cleaning
+// hadrcore cleaning
 gulp.task('clean', () =>
   del(['.tmp', 'dist/**/*', '!dist/.git'])
 );
 
-// Copy all files at the root level (app)
+// dist all files at the root level (app)
 gulp.task('copy', () =>
   gulp.src([
     'app/**/*',
@@ -280,10 +281,10 @@ gulp.task('copy', () =>
   .pipe($$.size({ title: 'copy' }))
 );
 
-// Concatenate all relevant files defined within
+// concatenate all relevant files defined within
 gulp.task('concat', () =>
   // <!-- build:<type> <path> -->
-  // ... HTML Markup, list of script / link tags.
+  // ... HTML Markup, list of script / link tags. see more here https://www.npmjs.com/package/gulp-useref
   // <!-- endbuild -->
   gulp.src(cssIncludeFiles, jsIncludeFiles)
   .pipe($$.plumber({
@@ -296,7 +297,7 @@ gulp.task('concat', () =>
   .pipe(gulp.dest((cssFile) => cssFile.base))
 );
 
-// Run PageSpeed Insights
+// run pageSpeed insights
 gulp.task('pagespeed', cb =>
   // Update the below URL to the public URL of your site
   pagespeed(pkg.url, {
