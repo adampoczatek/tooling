@@ -37,7 +37,7 @@ import { output as pagespeed } from 'psi';
 import pkg from './package.json';
 
 // Configuration Variables
-const config = {
+const defaultConfig = {
   appPath: './app/',
   sassPath: './app/css/',
   jsPath: './app/javascript/salmon/modules/',
@@ -50,7 +50,20 @@ const config = {
   sassStyle: 'compressed', //compressed, expanded, nested
   prefixBrowsers: ['last 3 versions', 'ie >= 8', 'ie_mob >= 10', 'ff >= 21', 'chrome >= 28', 'safari >= 6', 'opera >= 11', 'ios >= 7', 'android >= 4.4', 'bb >= 10', '> 1%']
 };
-
+const magentoConfig = {
+  appPath: './app/design/frontend/Salmon/base/',
+  sassPath: './app/design/frontend/Salmon/base/',
+  jsPath: './app/design/frontend/Salmon/base/web/js/',
+  imagePath: './app/design/frontend/Salmon/base/web/images/',
+  testPath: './dev/tests/js/jasmine/',
+  fonts: './app/design/frontend/Salmon/base/web/fonts/',
+  bower: './bower_components',
+  node: './node_modules',
+  distributionFolder: './dist',
+  sassStyle: 'compressed', //compressed, expanded, nested
+  prefixBrowsers: ['last 3 versions', 'ie >= 8', 'ie_mob >= 10', 'ff >= 21', 'chrome >= 28', 'safari >= 6', 'opera >= 11', 'ios >= 7', 'android >= 4.4', 'bb >= 10', '> 1%']
+};
+const config = pkg.magento ? magentoConfig : defaultConfig
 const $$ = gulpLoadPlugins();
 const reload = browserSync.reload;
 const scssIncludeFiles = path.join(config.sassPath, '**/*.s+(a|c)ss');
@@ -78,7 +91,7 @@ gulp.task('default', ['greet'], cb =>
   runSequence(
     ['clean', 'scsslint', 'sass', 'jslint', 'jsmin', 'images'],
     //'pagespeed',
-    'copy',
+    //'copy',
     'gsw',
     'watchers',
     //'sync',
@@ -172,7 +185,8 @@ gulp.task('jslint', () =>
       // Override any settings from the "parent" configuration
       'eqeqeq': 1,
       'max-len': 0,
-      'require-jsdoc': 0
+      'require-jsdoc': 0,
+      'jquery': 1,
     }
   }))
   .pipe($$.eslint.format())
