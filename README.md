@@ -82,7 +82,7 @@ $ npm install --save-dev babel-core babel-preset-es2015 browser-sync del eslint 
 
 optional, magento specific grunt runner
 ```
-$ npm install --save dev glob grunt grunt-autoprefixer grunt-banner grunt-contrib-clean grunt-contrib-connect grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jasmine grunt-contrib-less grunt-contrib-watch grunt-eslint grunt-exec grunt-jscs grunt-replace grunt-styledocco grunt-template-jasmine-requirejs grunt-text-replace imagemin-svgo load-grunt-config morgan path serve-static strip-json-comments underscore
+$ npm install --save-dev glob grunt grunt-autoprefixer grunt-banner grunt-contrib-clean grunt-contrib-connect grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jasmine grunt-contrib-less grunt-contrib-watch grunt-eslint grunt-exec grunt-jscs grunt-replace grunt-styledocco grunt-template-jasmine-requirejs grunt-text-replace imagemin-svgo load-grunt-config morgan path serve-static strip-json-comments underscore
 ```
 
 #### Create a gulp task stream using this format:
