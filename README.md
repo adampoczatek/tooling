@@ -45,8 +45,7 @@ If you're using Sublime then you may switch off some of the tasks in the Gulp fi
 * [SublimeGitGutter] - optional, if you're using git and to see diff in gutter
 * [SublimeLinter] - optional, integrated linting engine. language specific plugins are installed separately
 * [SublimeLinter-contrib-sass-lint] - optional, [SublimeLinter] plugin for sass, using sass-lint
-  * 
-  ```
+  * ```
   $ gem install scss-lint
   $ npm install -g sass-lint
   ```
@@ -65,12 +64,14 @@ $ cd [your_project_root]
 $ npm uninstall gulp --save-dev
 ```
 
-#### install Gulp globally
+#### automated install
 ```
 $ npm install gulp --g
+$ cd [your_project_root]
+$ npm install
 ```
 
-#### install Gulp and plugins into your project
+#### manual install Gulp and plugins into your project
 ```cmd
 $ cd [your_project_root]
 $ npm install gulp --save-dev
